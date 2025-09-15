@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique Manager (Zero to Hero)</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; margin: 40px; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1, h2, h3 { color: #222; }
+        h1 { border-bottom: 2px solid #eee; padding-bottom: 10px; font-size: 2.5em; text-align:center; }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 40px; }
+        h3 { margin-top: 30px; }
+        code { background-color: #f4f4f4; padding: 2px 5px; border-radius: 4px; font-family: "Courier New", Courier, monospace; }
+        pre { background-color: #f4f4f4; padding: 15px; border: 1px solid #ddd; border-radius: 5px; white-space: pre-wrap; word-wrap: break-word; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        strong { color: #111; }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <h1>Project Documentation: Boutique Manager</h1>
+        <p style="text-align:center;"><strong>Version:</strong> 2.0 (Hero Edition)</p>
+
+        <h2>1. Introduction</h2>
+        <h3>1.1. Project Vision</h3>
+        <p>To create a simple, powerful, and private desktop application that empowers a boutique owner to manage their business efficiently, replacing physical notebooks with a streamlined digital solution.</p>
+        
+        <h3>1.2. The "Zero to Hero" Path</h3>
+        <ul>
+            <li><strong>The "Zero" (MVP):</strong> A reliable tool to store customer data and order history.</li>
+            <li><strong>The "Hero" (Final Product):</strong> A complete business management suite with workflow tracking, visual references, profit calculation, and automated customer communication.</li>
+        </ul>
+
+        <h3>1.3. Core Value Proposition</h3>
+        <p>"Boutique Manager" is an all-in-one digital assistant that helps you track orders, understand your finances, and provide a modern, professional experience to your customers, all from the privacy of your own computer.</p>
+
+        <h2>2. Technology Stack</h2>
+        <ul>
+            <li><strong>Backend Server:</strong> Java (with Spring Boot)</li>
+            <li><strong>Frontend UI:</strong> React</li>
+            <li><strong>Desktop App Wrapper:</strong> Electron.js</li>
+            <li><strong>Database:</strong> SQLite</li>
+            <li><strong>SMS/WhatsApp Integration:</strong> Twilio API</li>
+        </ul>
+
+        <h2>3. Features & Functionality</h2>
+        <h3>3.1. Core Functionality (The Foundation)</h3>
+        <ul>
+            <li><strong>Customer Profiles:</strong> Securely save customer <code>name</code>, <code>phone number</code>, and detailed <code>measurements</code>. Each customer gets a unique, searchable ID.</li>
+            <li><strong>Order History:</strong> Link multiple orders to each customer, recording the <code>description</code>, <code>price</code>, and <code>date</code> of each order.</li>
+            <li><strong>Fast Search:</strong> Instantly find any customer by their name or phone number.</li>
+        </ul>
+
+        <h3>3.2. Enhanced Workflow Features</h3>
+        <ul>
+            <li><strong>Order Status Tracking:</strong> Manage the entire lifecycle of an order with statuses like "New," "Cutting," "Stitching," "Ready for Pickup," and "Completed."</li>
+            <li><strong>Image Uploads:</strong> Attach a photo to each order (e.g., a design reference, the fabric used, or the final product) for a perfect visual record.</li>
+            <li><strong>Customer Notes:</strong> A dedicated section on each customer's profile to save personal preferences and important details.</li>
+        </ul>
+
+        <h3>3.3. Business Management Features</h3>
+        <ul>
+            <li><strong>Expense Tracking:</strong> For each order, add an optional <code>materialCost</code> field to track expenses.</li>
+            <li><strong>Profit Calculation:</strong> The "Monthly Report" will be upgraded to show <strong>Total Sales</strong>, <strong>Total Material Costs</strong>, and the final <strong>Net Profit</strong>.</li>
+        </ul>
+
+        <h3>3.4. Professional "Wow" Feature</h3>
+        <ul>
+            <li><strong>Automated Customer Notifications:</strong> When an order's status is changed to "Ready for Pickup," the application will automatically send a professional SMS or WhatsApp message to the customer.</li>
+        </ul>
+
+        <h2>4. Database Schema Design (SQLite)</h2>
+        <h3><code>Customers</code> Table</h3>
+        <pre><code>id (Primary Key, Auto-increment)
+name (TEXT, NOT NULL)
+phone (TEXT, UNIQUE)
+measurements (TEXT)
+notes (TEXT)</code></pre>
+
+        <h3><code>Orders</code> Table</h3>
+        <pre><code>id (Primary Key, Auto-increment)
+customer_id (INTEGER, Foreign Key to Customers.id)
+description (TEXT, NOT NULL)
+price (REAL)
+material_cost (REAL)
+order_date (DATE)
+status (TEXT)
+image_path (TEXT)</code></pre>
+
+        <h2>5. API Endpoint Specification (Java REST API)</h2>
+        <ul>
+            <li><code>GET /api/customers</code> - Get all customers.</li>
+            <li><code>POST /api/customers</code> - Add a new customer.</li>
+            <li><code>GET /api/customers/:id</code> - Get a single customer's details.</li>
+            <li><code>GET /api/customers/:id/orders</code> - Get all orders for a specific customer.</li>
+            <li><code>POST /api/customers/:id/orders</code> - Add a new order (handles image upload).</li>
+            <li><code>PUT /api/orders/:id/status</code> - Update the status of a single order.</li>
+            <li><code>GET /api/reports/monthly</code> - Get the sales, costs, and profit.</li>
+            <li><code>POST /api/notifications/send</code> - Send SMS/WhatsApp notification.</li>
+        </ul>
+
+        <h2>6. "Zero to Hero" Development Roadmap</h2>
+        <ul>
+            <li><strong>Milestone 1 (Weeks 1-2):</strong> Backend Foundation (Core API for Customers & Orders).</li>
+            <li><strong>Milestone 2 (Weeks 3-4):</strong> Core Frontend (React UI for MVP features).</li>
+            <li><strong>Milestone 3 (Week 5):</strong> Add Workflow Features (Status Tracking, Image Uploads).</li>
+            <li><strong>Milestone 4 (Week 6):</strong> Build the Business Dashboard (Profit Calculation).</li>
+            <li><strong>Milestone 5 (Weeks 7-8):</strong> The "Wow" Feature & Final Packaging (Twilio API, Electron Builder).</li>
+        </ul>
+
+    </div>
+</body>
+</html>
