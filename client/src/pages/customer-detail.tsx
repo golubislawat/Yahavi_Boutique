@@ -10,7 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import type { Customer } from "@shared/schema";
+import type { Customer } from "../types";
 
 export default function CustomerDetail() {
   const [, params] = useRoute("/customers/:id");
@@ -122,7 +122,7 @@ export default function CustomerDetail() {
 
   const totalOrders = orders.length;
   const totalSpent = orders.reduce((sum, order) => sum + order.price, 0);
-  const memberSince = customer.createdAt ? formatDate(customer.createdAt) : "Unknown";
+  const memberSince = customer.createdAt ? formatDate(new Date(customer.createdAt)) : "Unknown";
 
   return (
     <>
@@ -288,7 +288,7 @@ export default function CustomerDetail() {
                         <Badge className={getStatusColor(order.status)}>{order.status}</Badge>
                       </div>
                       <div className="flex items-center justify-between text-sm text-muted-foreground">
-                        <span>{formatDate(order.orderDate!)}</span>
+                        <span>{formatDate(new Date(order.orderDate!))}</span>
                         <span className="font-medium text-foreground">{formatCurrency(order.price)}</span>
                       </div>
                     </div>

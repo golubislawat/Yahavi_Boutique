@@ -9,6 +9,16 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import {
   Table,
   TableBody,
   TableCell,
@@ -16,11 +26,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import type { CustomerWithStats } from "@shared/schema";
+import type { CustomerWithStats } from "../types";
 
 export default function Customers() {
   const [searchQuery, setSearchQuery] = useState("");
   const [editingCustomer, setEditingCustomer] = useState<CustomerWithStats | null>(null);
+  const [deleteCustomer, setDeleteCustomer] = useState<{id: string, name: string} | null>(null);
   const [, setLocation] = useLocation();
   const { toast } = useToast();
   const queryClient = useQueryClient();

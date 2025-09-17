@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import type { UpdateOrderStatus } from "@shared/schema";
+import type { UpdateOrderStatus } from "../types";
 
 export default function Orders() {
   const [statusFilter, setStatusFilter] = useState<string>("all");
@@ -207,7 +207,7 @@ export default function Orders() {
                         {formatCurrency(order.price)}
                       </span>
                       <span className="text-sm text-muted-foreground">
-                        {formatDate(order.orderDate!)}
+                        {formatDate(new Date(order.orderDate!))}
                       </span>
                     </div>
 
