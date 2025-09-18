@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { MagnifyingGlassIcon, PlusIcon } from "@heroicons/react/24/outline";
 import CustomerModal from "@/components/modals/customer-modal";
 import OrderModal from "@/components/modals/order-modal";
 
@@ -52,16 +53,16 @@ export default function Header({ title, subtitle, onSearch, showQuickAdd = true,
                   onChange={handleSearch}
                   data-testid="search-input"
                 />
-                <i className="fas fa-search absolute left-3 top-3 text-muted-foreground"></i>
+                <MagnifyingGlassIcon className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
               </div>
             )}
             {showQuickAdd && (
               <button
                 onClick={handleQuickAdd}
-                className="bg-primary text-primary-foreground px-4 py-2 rounded-lg font-medium hover:bg-primary/90 transition-colors"
+                className="bg-primary text-primary-foreground px-4 py-2 rounded-lg font-medium hover:bg-primary/90 transition-colors flex items-center gap-2"
                 data-testid="quick-add-button"
               >
-                <i className="fas fa-plus mr-2"></i>
+                <PlusIcon className="w-4 h-4" />
                 Quick Add
               </button>
             )}
