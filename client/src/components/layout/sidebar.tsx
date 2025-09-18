@@ -9,6 +9,7 @@ import {
   ChartBarIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  PhotoIcon,
 } from "@heroicons/react/24/outline";
 
 const navigation = [
@@ -16,6 +17,11 @@ const navigation = [
     name: "Dashboard",
     href: "/",
     icon: <HomeIcon className="w-6 h-6" />,
+  },
+  {
+    name: "Design Gallery",
+    href: "/designs",
+    icon: <PhotoIcon className="w-6 h-6" />,
   },
   {
     name: "Customers",

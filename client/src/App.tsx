@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Dashboard from "@/pages/dashboard";
+import Designs from "@/pages/designs";
 import Customers from "@/pages/customers";
 import CustomerDetail from "@/pages/customer-detail";
 import Orders from "@/pages/orders";
@@ -18,6 +19,7 @@ function Router() {
       <main className="flex-1 overflow-auto">
         <Switch>
           <Route path="/" component={Dashboard} />
+          <Route path="/designs" component={Designs} />
           <Route path="/customers" component={Customers} />
           <Route path="/customers/:id" component={CustomerDetail} />
           <Route path="/orders" component={Orders} />
